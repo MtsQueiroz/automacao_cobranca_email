@@ -17,7 +17,7 @@ def verificar_e_enviar(df):
                 assunto=f'[AutoCobrix] Número da fatura: {row["num_fatura"]}',
                 destinatario=row["email"],
                 nome=row["nome"],
-                data_vencimento=row["data_vencimento"].strftime("%d, %b %Y"), #exemplo: 11, Nov 2025
+                data_vencimento=row["data_vencimento"].strftime("%d, %b %Y"),
                 num_fatura=row["num_fatura"],
                 valor=row["valor"],
             )
@@ -25,4 +25,5 @@ def verificar_e_enviar(df):
     return f"Email enviados: {contar_email}"
 
 df = load_df(URL)
+
 print(verificar_e_enviar(df))
