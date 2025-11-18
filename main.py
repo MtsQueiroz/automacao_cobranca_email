@@ -1,6 +1,8 @@
 from datetime import date
 import pandas as pd
 from enviaremail import enviaremail
+import locale
+locale.setlocale(locale.LC_TIME, 'pt_BR')
 
 URL = f"https://docs.google.com/spreadsheets/d/1fTs9YosIm0yqyXoKsnf98xhEzfQgj890TUz3bgq6MhM/gviz/tq?tqx=out:csv&sheet=dadosfatura"
 
@@ -17,7 +19,7 @@ def verificar_e_enviar(df):
                 assunto=f'[AutoCobrix] Número da fatura: {row["num_fatura"]}',
                 destinatario=row["email"],
                 nome=row["nome"],
-                data_vencimento=row["data_vencimento"].strftime("%d, %b %Y"),
+                data_vencimento=row["data_vencimento"].strftime("%d de %B de %Y"),
                 num_fatura=row["num_fatura"],
                 valor=row["valor"],
             )
@@ -27,3 +29,4 @@ def verificar_e_enviar(df):
 df = load_df(URL)
 
 print(verificar_e_enviar(df))
+
